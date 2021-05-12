@@ -5,6 +5,8 @@ from Utils import Utils
 
 
 class FaPassport:
+    __passports_path = ''
+    __path = ''
     __encoding = ''
     __section = 'Passport'
     __description = 'FA'
@@ -13,11 +15,14 @@ class FaPassport:
     __alpha = 0.0
     __dirty = 0
     __defective = 0
-    __path = ''
     __name = ''
     __coord_x = ''
     __coord_y = ''
     __num = ''
+
+    def __init__(self, main_path):
+        self.__passports_path = main_path + 'ReloadedItems\\'
+        self.__encoding = Utils.define_ini_encoding(self.__passports_path + Utils.listdir(self.__passports_path)[0])
 
     @property
     def x(self):
@@ -70,6 +75,14 @@ class FaPassport:
     @num.setter
     def num(self, num):
         self.__num = num
+
+    @property
+    def encoding(self):
+        return self.__encoding
+
+    @property
+    def passports_path(self):
+        return self.__passports_path
 
     def create_passport_file(self):
         pattern = {'X': self.__coord_x,

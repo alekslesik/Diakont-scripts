@@ -1,5 +1,6 @@
 import itertools
 import chardet
+import os
 from MyConfigParser import MyConfigParser
 
 
@@ -82,3 +83,7 @@ class Utils:
         """
         with open(path, "w", encoding=encoding) as ini_file:
             ini_config.write(ini_file)
+
+    @staticmethod
+    def listdir(path):
+        return os.listdir(path)

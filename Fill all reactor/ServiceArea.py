@@ -27,7 +27,7 @@ class ServiceArea:
         :param setting: setting=
         :param value: =value
         """
-        Utils.update_config_parser_setting(self.__ini_config, section, setting, value)
+        Utils.update_config_parser_setting(self.__ini_config, self.__path, section, setting, value)
 
     def get_setting(self, section, setting):
         """
@@ -43,4 +43,3 @@ class ServiceArea:
         Write config object to .ini file
         """
         Utils.write_ini_file(self.__ini_config, self.__path, self.__encoding)
-

@@ -32,4 +32,3 @@ for cell_name in service_area.ini_config.sections():
         reloaded_items_map.update_setting(cell_name, "Number_R_I", "1")
         reloaded_items_map.update_setting(cell_name, "Name_R_I1", passport.num)
         cells_count += 1
-

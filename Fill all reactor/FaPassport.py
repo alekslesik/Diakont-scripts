@@ -1,6 +1,3 @@
-import configparser
-from MyConfigParser import MyConfigParser
-
 from Utils import Utils
 
 
@@ -77,10 +74,6 @@ class FaPassport:
         self.__num = num
 
     @property
-    def encoding(self):
-        return self.__encoding
-
-    @property
     def passports_path(self):
         return self.__passports_path
 
@@ -96,18 +89,3 @@ class FaPassport:
                    'Defective': self.__defective}
 
         Utils.write_ini_file(Utils.create_ini_file(self.__section, pattern), self.__path, self.__encoding)
-
-    # def create_passport_file(self):
-    #     config_passport = MyConfigParser()
-    #     config_passport[self.__section] = {'X': self.__coord_x,
-    #                                        'Y': self.__coord_y,
-    #                                        'Z': self.__coord_z,
-    #                                        'Alpha': self.__alpha,
-    #                                        'Code_Function': self.__code_function,
-    #                                        'Num': self.__num,
-    #                                        'Description': self.__description,
-    #                                        'Dirty': self.__dirty,
-    #                                        'Defective': self.__defective}
-    #
-    #     with open(self.__path, 'w', encoding=self.__encoding) as passportFA:
-    #         config_passport.write(passportFA)

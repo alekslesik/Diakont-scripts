@@ -14,7 +14,11 @@ class Utils:
             return detect['encoding']
 
     @staticmethod
-    def get_configparser():
+    def get_config_object():
+        """
+        Get MyConfigParser object
+        :return: MyConfigParser object
+        """
         return MyConfigParser()
 
     @staticmethod
@@ -58,11 +62,23 @@ class Utils:
 
     @staticmethod
     def create_ini_file(section, pattern):
-        config_file = Utils.get_configparser()
+        """
+        Fill MyConfigParser object with section
+        :param section: .ini [section]
+        :param pattern: dictionary with key=value
+        :return: MyConfigParser object
+        """
+        config_file = Utils.get_config_object()
         config_file[section] = pattern
         return config_file
 
     @staticmethod
     def write_ini_file(ini_config, path, encoding):
+        """
+        Write MyConfigParser object to file
+        :param ini_config: MyConfigParser object
+        :param path: .ini file path to write
+        :param encoding: encoding
+        """
         with open(path, "w", encoding=encoding) as ini_file:
             ini_config.write(ini_file)

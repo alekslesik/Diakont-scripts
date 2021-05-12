@@ -1,72 +1,100 @@
 import configparser
 from MyConfigParser import MyConfigParser
 
+from Utils import Utils
+
 
 class FaPassport:
-    encoding = ''
-    header = 'Passport'
-    description = 'FA'
-    codeFunction = 34
-    coordZ = 6960
-    alpha = 0.0
-    dirty = 0
-    defective = 0
-    path = ''
-    name = ''
-    coordX = ''
-    coordY = ''
-    num = ''
+    __encoding = ''
+    __section = 'Passport'
+    __description = 'FA'
+    __code_function = 34
+    __coord_z = 6960
+    __alpha = 0.0
+    __dirty = 0
+    __defective = 0
+    __path = ''
+    __name = ''
+    __coord_x = ''
+    __coord_y = ''
+    __num = ''
 
-    def set_x(self, coord_y):
-        self.coordX = coord_y
+    @property
+    def x(self):
+        return self.__coord_x
 
-    def get_x(self):
-        return self.coordX
+    @x.setter
+    def x(self, coord_x):
+        self.__coord_x = coord_x
 
-    def set_y(self, coord_y):
-        self.coordY = coord_y
+    @property
+    def y(self):
+        return self.__coord_y
 
-    def get_y(self):
-        return self.coordY
+    @y.setter
+    def y(self, coord_y):
+        self.__coord_y = coord_y
 
-    def set_path(self, directory):
-        self.path = directory
+    @property
+    def path(self):
+        return self.__path
 
-    def get_path(self):
-        return self.path
+    @path.setter
+    def path(self, directory):
+        self.__path = directory
 
-    def set_name(self, passportname):
-        self.name = passportname
+    @property
+    def name(self):
+        return self.__name
 
-    def get_name(self):
-        return self.name
+    @name.setter
+    def name(self, passportname):
+        self.__name = passportname
 
-    def set_encoding(self, encoding):
-        self.encoding = encoding
+    @property
+    def encoding(self):
+        return self.__encoding
 
-    def get_encoding(self):
-        return self.encoding
+    @encoding.setter
+    def encoding(self, encoding):
+        self.__encoding = encoding
 
-    def get_code_function(self):
-        return self.codeFunction
+    @property
+    def code_function(self):
+        return self.__code_function
 
-    def set_num(self, num):
-        self.num = num
+    @property
+    def num(self):
+        return self.__num
 
-    def get_num(self):
-        return self.num
+    @num.setter
+    def num(self, num):
+        self.__num = num
 
     def create_passport_file(self):
-        config_passport = MyConfigParser()
-        config_passport[self.header] = {'X': self.coordX,
-                                        'Y': self.coordY,
-                                        'Z': self.coordZ,
-                                        'Alpha': self.alpha,
-                                        'Code_Function': self.codeFunction,
-                                        'Num': self.num,
-                                        'Description': self.description,
-                                        'Dirty': self.dirty,
-                                        'Defective': self.defective}
+        pattern = {'X': self.__coord_x,
+                   'Y': self.__coord_y,
+                   'Z': self.__coord_z,
+                   'Alpha': self.__alpha,
+                   'Code_Function': self.__code_function,
+                   'Num': self.__num,
+                   'Description': self.__description,
+                   'Dirty': self.__dirty,
+                   'Defective': self.__defective}
 
-        with open(self.path, 'w', encoding=self.encoding) as passportFA:
-            config_passport.write(passportFA)
+        Utils.write_ini_file(Utils.create_ini_file(self.__section, pattern), self.__path, self.__encoding)
+
+    # def create_passport_file(self):
+    #     config_passport = MyConfigParser()
+    #     config_passport[self.__section] = {'X': self.__coord_x,
+    #                                        'Y': self.__coord_y,
+    #                                        'Z': self.__coord_z,
+    #                                        'Alpha': self.__alpha,
+    #                                        'Code_Function': self.__code_function,
+    #                                        'Num': self.__num,
+    #                                        'Description': self.__description,
+    #                                        'Dirty': self.__dirty,
+    #                                        'Defective': self.__defective}
+    #
+    #     with open(self.__path, 'w', encoding=self.__encoding) as passportFA:
+    #         config_passport.write(passportFA)

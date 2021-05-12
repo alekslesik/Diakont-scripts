@@ -1,32 +1,38 @@
 class Cell:
-    name = ''
-    shortDescription = ''
-    description = ''
-    groupParameters = ''
-    codeVolume = None
-    codeFunction = None
-    codeFunctionBase = None
-    angle = None
-    logicX = None
-    logicY = None
-    xc = None
-    yc = None
-    subZone = None
+    __name = ''
+    __shortDescription = ''
+    __description = ''
+    __groupParameters = ''
+    __codeVolume = None
+    __codeFunction = None
+    __codeFunctionBase = None
+    __angle = None
+    __logicX = None
+    __logicY = None
+    __xc = None
+    __yc = None
+    __subZone = None
 
-    def get_name(self):
-        return self.name
+    @property
+    def name(self):
+        return self.__name
 
-    def set_name(self, name):
-        self.name = name
+    @name.setter
+    def name(self, name):
+        self.__name = name
 
-    def get_xc(self):
-        return self.xc
+    @property
+    def xc(self):
+        return self.__xc
 
-    def set_xc(self, xc):
-        self.xc = xc
+    @xc.setter
+    def xc(self, xc):
+        self.__xc = xc
 
-    def get_yc(self):
-        return self.yc
+    @property
+    def yc(self):
+        return self.__yc
 
-    def set_yc(self, yc):
-        self.yc = yc
+    @yc.setter
+    def yc(self, yc):
+        self.__yc = yc

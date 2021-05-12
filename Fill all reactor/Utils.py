@@ -1,12 +1,9 @@
 import itertools
-from MyConfigParser import MyConfigParser
-
 import chardet
+from MyConfigParser import MyConfigParser
 
 
 class Utils:
-    variable = 1
-
     # Define .ini file encoding
     # return string encoding
     @staticmethod
@@ -15,6 +12,10 @@ class Utils:
             data = file.read(20000)
             detect = chardet.detect(data)
             return detect['encoding']
+
+    @staticmethod
+    def get_configparser():
+        return MyConfigParser()
 
     @staticmethod
     def get_config_parser(path, encoding='UTF-8-SIG'):
@@ -43,6 +44,23 @@ class Utils:
         config_object.set(section, setting, value)
         with open(path, "w") as config_file:
             config_object.write(config_file)
+
+    @staticmethod
+    def get_config_parser_setting(config_object, section, setting):
+        """
+        Return
+        :param config_object: MyConfigParser object
+        :param section: .ini file [section]
+        :param setting: .ini file key=
+        :return: value string
+        """
+        return config_object.get(section, setting)
+
+    @staticmethod
+    def create_ini_file(section, pattern):
+        config_file = Utils.get_configparser()
+        config_file[section] = pattern
+        return config_file
 
     @staticmethod
     def write_ini_file(ini_config, path, encoding):

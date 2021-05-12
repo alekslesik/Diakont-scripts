@@ -11,7 +11,7 @@ class FaPassport:
     alpha = 0.0
     dirty = 0
     defective = 0
-    directory = ''
+    path = ''
     name = ''
     coordX = ''
     coordY = ''
@@ -29,11 +29,11 @@ class FaPassport:
     def get_y(self):
         return self.coordY
 
-    def set_directory(self, directory):
-        self.directory = directory
+    def set_path(self, directory):
+        self.path = directory
 
-    def get_directory(self):
-        return self.directory
+    def get_path(self):
+        return self.path
 
     def set_name(self, passportname):
         self.name = passportname
@@ -68,5 +68,5 @@ class FaPassport:
                                         'Dirty': self.dirty,
                                         'Defective': self.defective}
 
-        with open(self.directory, 'w', encoding=self.encoding) as passportFA:
+        with open(self.path, 'w', encoding=self.encoding) as passportFA:
             config_passport.write(passportFA)

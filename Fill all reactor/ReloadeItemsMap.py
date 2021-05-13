@@ -21,18 +21,7 @@ class ReloadedItemsMap:
         return self.__encoding
 
     def update_setting(self, section, setting, value):
-        """
-        Update .ini config object
-        :param section: [section]
-        :param setting: setting=
-        :param value: =value
-        """
-        self.__ini_config.set(section, setting, value)
-        self.write()
+        Utils.update_config_parser_setting(self.__ini_config, self.__path, section, setting, value)
 
     def write(self):
-        """
-        Write config object to .ini file
-        """
-        with open(self.__path, "w", encoding=self.__encoding) as file:
-            self.__ini_config.write(file)
+        Utils.write_ini_file(self.__ini_config, self.__path, self.__encoding)
